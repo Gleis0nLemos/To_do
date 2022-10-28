@@ -57,6 +57,16 @@
     display: inline-block;
 }
 
+/* messages */ 
+
+ul.messages {
+    padding: 0;
+}
+
+ul.messages li {
+    list-style: none;
+}
+
 /* Lista de tarefas */
 
 .list-div {
