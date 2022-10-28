@@ -48,6 +48,7 @@
     position: absolute;
     top: 12px;
     right: 26px;
+    cursor: pointer;
 }
 
 .search-div {
@@ -55,6 +56,16 @@
     margin-top: 15px;
     margin-bottom: 15px;
     display: inline-block;
+}
+
+/* messages */ 
+
+ul.messages {
+    padding: 0;
+}
+
+ul.messages li {
+    list-style: none;
 }
 
 /* Lista de tarefas */
@@ -88,6 +99,23 @@
 
 .fas.fa-edit {
     color: #13c43f;
+}
+
+/* paginação */
+
+.pagination {
+    margin-bottom: 20px;
+}
+
+.step-links {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step-links .current {
+    margin-left:  5px;
+    margin-right: 5px;
 }
 
 /* rodapé */
