@@ -21,6 +21,12 @@
     letter-spacing: 1px;
 }
 
+/* Login */
+
+.auth-card {
+    margin-bottom: 30px;
+}
+
 /* Botão de adicionar */
 
 #add-link {

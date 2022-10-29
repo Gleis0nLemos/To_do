@@ -1,13 +1,12 @@
-from re import search
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-
-import task
 from .models import Task
 from .forms import TaskForm
 from django.contrib import messages
 
+@login_required
 def taskList(request):
     search = request.GET.get('search')
 
@@ -25,10 +24,12 @@ def taskList(request):
 
     return render(request, 'task/list.html', {'tasks': tasks})
 
+@login_required
 def taskView(request, id):
     task = get_object_or_404(Task, pk=id)
     return render(request, 'task/task.html', {'task': task})
 
+@login_required
 def newTask(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
@@ -43,6 +44,7 @@ def newTask(request):
         form = TaskForm()
         return render(request, 'task/addtask.html', {'form': form})
 
+@login_required
 def editTask(request, id):
     task = get_object_or_404(Task, pk=id)
     form = TaskForm(instance=task)
@@ -60,6 +62,7 @@ def editTask(request, id):
     else:
         return render(request, 'task/edittask.html', {'form': form, 'task': task})
 
+@login_required
 def deleteTask(request, id):
     task = get_object_or_404(Task, pk=id)
     task.delete()
@@ -68,8 +71,10 @@ def deleteTask(request, id):
 
     return redirect('/')
 
+@login_required
 def helloWord(request):
     return HttpResponse('Hello Word!')
 
+@login_required
 def yourName(request, name):
     return render(request, 'task/yourname.html', {'name': name})
