@@ -31,6 +31,11 @@
     margin-bottom: 30px;
 }
 
+.change-form-p {
+    margin-top: 30px;
+    text-align: center;
+}
+
 /* Botão de adicionar */
 
 #add-link {
