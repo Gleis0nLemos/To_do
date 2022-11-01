@@ -5,12 +5,16 @@ from django.http import HttpResponse
 from .models import Task
 from .forms import TaskForm
 from django.contrib import messages
+import datetime
 
 @login_required
 def taskList(request):
 
     search = request.GET.get('search')
     filter = request.GET.get('filter')
+    tasksDoneRecently = Task.objects.filter(done='done', updated_at__gt=datetime.datetime.now()-datetime.timedelta(days=30), user=request.user).count()
+    tasksDone = Task.objects.filter(done='done', user=request.user).count()
+    tasksDoing = Task.objects.filter(done='doing', user=request.user).count()
 
     if search:
         tasks = Task.objects.filter(title__icontains=search, user=request.user)
@@ -27,7 +31,7 @@ def taskList(request):
 
         tasks = paginator.get_page(page)
 
-    return render(request, 'task/list.html', {'tasks': tasks})
+    return render(request, 'task/list.html', {'tasks': tasks, 'tasksrecently': tasksDoneRecently, 'tasksdone': tasksDone, 'tasksdoing': tasksDoing})
 
 @login_required
 def taskView(request, id):
